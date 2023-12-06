@@ -11,6 +11,10 @@ function toggleModal() {
         const lastName = document.getElementById("lastName").value;
         const mobile = document.getElementById("mobile").value;
         const notes = document.getElementById("notes").value;
+        const building = document.getElementById("building").value;
+        const floor = document.getElementById("floor").value;
+        const host = document.getElementById("host").value;
+
     
         var tableBody = document.getElementById("guest-table");
         var detailsRow = document.getElementById("detailsRow");
@@ -24,11 +28,15 @@ function toggleModal() {
             id: id,
             firstName: firstName,
             lastName: lastName,
-            mobile: mobile
+            mobile: mobile,
+            building: building,
+            floor: floor,
+            host: host
+
         });
 
         localStorage.setItem("guests", JSON.stringify(existingGuests));
-      location.reload();
+        location.reload();
     }
     
     function loadGuestDetails() {
@@ -41,6 +49,7 @@ function toggleModal() {
         var tableBody = document.getElementById("guest-table");
     
         existingGuests.forEach(guest => {
+            console.log("Guest Details:", guest);
             var row = tableBody.insertRow();
             var cell0 = row.insertCell(0);
             var cell1 = row.insertCell(1);
@@ -74,7 +83,7 @@ function cancelUpdate() {
 }
 
 function notifyUser() {
-    
+    document.getElementById("")
 }
 
 

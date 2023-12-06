@@ -25,7 +25,6 @@ var floorsData = [];
     floorsData.push(floor);
   }
   
-  console.log(floorsData);
   
   
   var hostsData = [
