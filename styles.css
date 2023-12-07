@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
     padding: 0;
   }
@@ -14,20 +14,30 @@ body {
   }
   
   main {
+    font-size: 13px;
     padding: 20px;
   }
   
   label {
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     display: block;
     margin-bottom: 5px;
   }
+
+  label option{
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: 11px;
+  }
   
   input, select, button {
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     margin-bottom: 10px;
     padding: 8px;
   }
   
   table {
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
     width: 100%;
     border-collapse: collapse;
   }
@@ -44,7 +54,11 @@ body {
   
   footer {
     padding: 10px;
-    text-align: center;
+    text-align: right;
+    margin-top: 7px;
+    margin-right: 20px;
+    color: blue;
+    font-size: 13px;
   }
 
 
@@ -72,11 +86,6 @@ h1 span {
     font-size: 20px;  
 }
 
-h2{
-  margin-top: 7px;
-  color: blue;
-  font-size: 15px;
-}
 
 .center-button{
   display: flex;
@@ -86,13 +95,36 @@ h2{
   
 }
 
+.modal .modalBtns .modalBtn {
+  background-color: #fff;
+  border-color: rgb(172, 172, 172);
+  border-style:groove;
+}
+
+.modal .modalBtns .modalBtn:hover {
+  background-color: rgb(234, 234, 234);
+}
+
+.modal .modalBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;;
+
+}
+
 .orderBtn {
   background-color: #fff;
   border-color: rgb(172, 172, 172);
   border-style:groove;
 }
-  
+
+.orderBtn:hover {
+   background-color: rgb(234, 234, 234);
+}
 .modal {
+
   display: none;
   position: fixed;
   top: 50%;
@@ -105,24 +137,30 @@ h2{
 }
 
 .modal .fields {
+
   width: 170px;
   height: 10px;
-  border-color: black;
+  border-style:solid;
+  border: 1px solid #948a8a;
   
 }
 
 .modal .notes {
   width: 250px;
   height: 50px;
-  border-color: black;
+  border: 1px solid #948a8a;
 }
 
 .modal h3 {
   margin-top: auto;
-  font-size: 20px;
-  color:navy;
+  font-size: 16px;
+  color:rgb(57, 121, 225);
 }
 
+#guest-table th,td{
+  font-size: 11px;
+}
 #guest-table a.new {
+  font-size: 13px;
   color: blue;
 }
