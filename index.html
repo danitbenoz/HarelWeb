@@ -1,134 +1,153 @@
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
-  <title>זימון אורחים</title>
-  <script src="main.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>זימון אורחים</title>
+    <script src="main.js" defer></script>
 </head>
+
 <body>
-  <header class="up">
-    <img src="back.png">
-  </header>
-  <main>
-    <script src="data.js"></script>
-    <h1> <span> פרטי הפגישה </span></h1>
-      <label for="meeting-purpose">מטרת פגישה:*
-      <select id="meeting-purpose">
-        <option value="">פגישת עבודה</option>
-    </select>
+    <header class="up">
+        <img src="back.png">
+    </header>
+    <main>
+        <script src="data.js"></script>
+        <h1> <span> פרטי הפגישה </span></h1>
+        <div class="flexContainer">
+            <label for="meeting-purpose"><a>מטרת פגישה:* </a>
+                <select class="selectPosition" id="meeting-purpose">
+                    <option value="">פגישת עבודה</option>
+                </select>
+            </label>
+            <label for="building"><a> בניין הפגישה:*</a>
+                <select class="selectPosition" id="building">
+                    <option value="">בחר בניין</option>
+                </select>
+                <script>
+                    var buildingSelect = document.getElementById("building");
+                    buildingsData.forEach(building => {
+                        var option = document.createElement("option");
+                        option.value = building.id;
+                        option.textContent = building.name;
+                        buildingSelect.appendChild(option);
+                    });
+                </script>
 
-    </label>
-      <label for="building">בניין הפגישה:*
-      <select id="building">
-        <option value="">בחר בניין</option>
-      </select>
-      <script>
-        var buildingSelect = document.getElementById("building");
-        buildingsData.forEach(building => {
-          var option = document.createElement("option");
-          option.value = building.id;
-          option.textContent = building.name;
-          buildingSelect.appendChild(option);
-        });
-    </script>
-  
-    </label>
-      <label for="floor">קומת פגישה:*
-      <select id="floor">
-            <option value="">בחר קומה</option>
-        </select>
-        <!-- ניתן להוסיף אופציות נוספות על פי הצורך -->
-        <script>
-        var floorSelect = document.getElementById("floor");
-        floorsData.forEach(floor => {
-          var option = document.createElement("option");
-          option.value = floor.id;
-          option.textContent = floor.name;
-          floorSelect.appendChild(option);
-        });
-    </script>
-  
-    </label>
-    <div style="display: flex;">
-        <label for="date">תאריך:* <input type="date" id="date" value="2023-12-05"></label>
-        <label for="start-time" style="margin-right: 10px;">שעת התחלה: <input type="time" id="start-time"></label>
-        <label for="end-time" style="margin-right: 10px;">שעת סיום: <input type="time" id="end-time"></label>
-      </div>
-      <label for="host">מארח:
-        <select id="host">
-          <option value="">אל מי מגיע האורח לפגישה?</option>
-        </select>
-        <script>
-            var hostSelect = document.getElementById("host");
-            hostsData.forEach(host => {
-              var option = document.createElement("option");
-              option.value = host.id;
-              option.textContent = host.name;
-              hostSelect.appendChild(option);
-            });
-        </script>
-        
-      </label>
-    </div>
+            </label>
+            <label for="floor"><a> קומת פגישה:*&nbsp; </a>
+                <select class="selectPosition" id="floor">
+                    <option value="">בחר קומה</option>
+                </select>
+                <script>
+                    var floorSelect = document.getElementById("floor");
+                    floorsData.forEach(floor => {
+                        var option = document.createElement("option");
+                        option.value = floor.id;
+                        option.textContent = floor.name;
+                        floorSelect.appendChild(option);
+                    });
+                </script>
+            </label>
 
-    <!-- הוסף אורחים -->
-    <div id="add-guests">
-      <h1><span> הוסף אורחים </span></h1>
-      <p> לחץ 'חדש' להזמנת אורחים חדשים:</p>
-    </div>
+            <div style="display: flex;">
+                <label for="date"><a>תאריך:*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> <input
+                        class="selectPosition" type="date" id="date" value="2023-12-05"></label>
+                <label for="start-time" style="margin-right: 10px;">שעת התחלה: <input type="time"
+                        id="start-time"></label>
+                <label for="end-time" style="margin-right: 10px;">שעת סיום: <input type="time" id="end-time"></label>
+            </div>
+            <label for="host"><a>מארח:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                <select class="selectPosition" id="host">
+                    <option value="">אל מי מגיע האורח לפגישה?</option>
+                </select>
+                <script>
+                    var hostSelect = document.getElementById("host");
+                    hostsData.forEach(host => {
+                        var option = document.createElement("option");
+                        option.value = host.id;
+                        option.textContent = host.name;
+                        hostSelect.appendChild(option);
+                    });
+                </script>
 
-    <div class="modal" id="guest-modal">
-        <h3>ערוך פרטי אורח</h3>
-        
-            <label for="id">ת"ז:*
-            <input class="fields" type="text" id="id" maxlength="9" pattern="[0-9]{9}" required oninput=validateIdInput(this)></label>
-        
-            <label for="firstName">שם פרטי:*
-            <input class="fields" type="text" id="firstName" required></label>
-        
-            <label for="lastName">שם משפחה:*
-            <input class="fields" type="text" id="lastName" required></label>
-        
-            <label for="mobile">טלפון נייד:*
-            <input class="fields" type="tel" id="mobile" pattern="[0-9]{10}" required oninput=validatePhoneInput(this)></label>
-               
-            <label for="mobile">הערות:</label>
-            <input class="notes" type="text" id="notes"  required>
+            </label>
+        </div>
+        </div>
+
+        <div id="add-guests">
+            <h1><span> הוסף אורחים </span></h1>
+            <p> לחץ 'חדש' להזמנת אורחים חדשים:</p>
+        </div>
+
+        <div class="modal" id="guest-modal">
+            <h3>ערוך פרטי אורח</h3>
+
+            <label class="labelPos" for="id">ת"ז:*</label>
+            <input class="fields" type="text" id="id" maxlength="9" pattern="[0-9]{9}" required
+                oninput=validateIdInput(this)>
+
+            <label class="labelPos" for="firstName">שם פרטי:*</label>
+            <input class="fields" type="text" id="firstName" required>
+
+            <label class="labelPos" for="lastName">שם משפחה:*</label>
+            <input class="fields" type="text" id="lastName" required>
+
+            <label class="labelPos" for="mobile">טלפון נייד:*</label>
+            <input class="fields" type="tel" id="mobile" pattern="[0-9]{10}" required>
+
+            <label class="labelPos" for="notes">הערות:</label>
+            <input class="notes" type="text" id="notes" required>
+
+
             <div class="modalBtns">
                 <button class="modalBtn" onclick="updateGuest()">עדכן</button>
                 <button class="modalBtn" onclick="cancelUpdate()">בטל</button>
             </div>
-    </div>
+        </div>
 
-<table id="guest-table">
-    <thead>
-      <tr>
-        <th><a href="#" class="new" onclick="toggleModal()">חדש</a></th>
-        <th>ת"ז</th>
-        <th>שם פרטי</th>
-        <th>שם משפחה</th>
-        <th>טלפון נייד</th>
-      </tr>
-    </thead>
-    <tbody id="guest-list"> 
-    </tbody>
-    <tr id="detailsRow">
-        <td colspan="5">לא הוספו אורחים לזימון</td>
-    </tr>
-  </table>
+        <table id="guest-table">
+            <thead>
+                <tr>
+                    <th><a href="#" class="new" onclick="toggleModal()">חדש</a></th>
+                    <th>ת"ז</th>
+                    <th>שם פרטי</th>
+                    <th>שם משפחה</th>
+                    <th>טלפון נייד</th>
+                </tr>
+            </thead>
+            <tbody id="guest-list">
+            </tbody>
+            <tr id="detailsRow">
+                <td colspan="5">לא הוספו אורחים לזימון</td>
+            </tr>
+        </table>
 
-<div class="center-button">
-    <div id="messageContainer"></div>
-    <button class="orderBtn"  onclick="notifyUser()">הזמן פגישה</button>
-</div>
-  </main>
+        <div class="center-button">
+            <div id="messageContainer"></div>
+            <button class="orderBtn" onclick="notifyUser()">הזמן פגישה</button>
+        </div>
+    </main>
 
-  <footer>
-    *נא ליידע את האורח שעליו להגיע/להצטייד בתעודה מזהה
-  </footer>
+    <footer>
+        *נא ליידע את האורח שעליו להגיע/להצטייד בתעודה מזהה
 
-  <script src="main.js"></script>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+
+        <script src="https://www.negishim.com/accessibility/accessibility_pro_group255.js"
+            type="text/javascript"></script>
+        <script type="text/javascript">
+            accessibility_rtl = true;
+            pixel_from_side = 20;
+            pixel_from_start = 20;
+        </script>
+
+    </footer>
+
+    <script src="main.js"></script>
 </body>
+
 </html>
